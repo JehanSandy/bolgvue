@@ -19,7 +19,8 @@ import { computed } from 'vue';
         // #11 membuat computed property untuk memotong content menjadi snippet, jadi hanya menampilkan sebagian text saja, contoh 50 karakter pertama diikuti dengan ...
         setup(props) {
             const snippet = computed(() => {
-                return props.data.content.substring(0, 50) + '...';
+                // substring untuk memotong text, jadi hanya menampilkan 100 karakter pertama diikuti dengan ..., bisa di ubah sesuai kebutuhan
+                return props.data.content.substring(0, 100) + '...';
             });
             return { snippet };
         },
