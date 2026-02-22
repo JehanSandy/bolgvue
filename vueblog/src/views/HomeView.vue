@@ -5,7 +5,11 @@
     <p ref="p">Nama saya {{ name }}</p>
     <p ref="p2">Number saya {{ number }}</p>
   </div>
-  <button @click="handleClick">Click Me</button>
+  <button @click="handleClick">Click Me</button> <br/>
+
+  <!-- ini menambah number menggunakan increment mengunakan function ++ (number++) -->
+  <button @click="number++">increment</button>
+  <input type="text" v-model="name" />
 </template>
 
   <script >
@@ -17,26 +21,19 @@
 
     const p = ref(null)
     const p2 = ref(null)
-    // data yang akan di gunakan di template
-    const name = "jehan"
-    const number = 132324234
-    // tidak perlu menggunakan key dan value jika nama variabel sama dengan nama key
-
+    // ini cara untuk membuat reactive variable, jika kita ingin membuat variable yang bisa berubah-ubah, kita harus menggunakan ref, jika tidak maka variable tersebut tidak akan bisa berubah-ubah
+    const name = ref("jehan")
+    const number = ref(132324234)
+    
     const handleClick = () => {
-      // console.log("p", p.value)
-      // console.log("p2", p2.value)
-
-      // untuk menambahkan class pada element html menggunakan ref untuk mengakses dan mengubah value dari element html
-      p.value.classList.add("paragraph1")
-      p2.value.classList.add("paragraph2")
-      // manupulasi element html menggunakan ref untuk mengakses dan mengubah value dari element html
-      p.value.textContent = "Nama saya lupa"
-      p2.value.textContent = "Number saya hilang"
-      
+      name.value = "rehan"
+      number.value = 123489432487
     }
+    
+    // tidak perlu menggunakan key dan value jika nama variabel sama dengan nama key
     return {
       name,
-      number, p, p2, handleClick}
+      number, handleClick}
     }, 
   }
   </script>
