@@ -2,59 +2,39 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <!-- perulanga disini sudah tidak melakukan looping names, namun looping data yg telah di tampung pada filteredNames -->
-    <div v-for="(name, index) in filteredNames" :key="index">
-      <p>{{ name }}</p>
-    </div>
-    <input type="text" v-model="search" /> <br/>
-    <button @click="Handleclick">Stop Watch</button>
+    <!-- #3 mengirim data posts kedalam props :dataposts -->
+    <PostList :dataposts="posts" />
   </div>
-  
-
-  
-
-
 </template>
 
   <script >
+  import PostList from '../components/postList.vue'
   // ref dan reactive harus di inport disini
-  import { ref, reactive, computed, watch, watchEffect } from "vue";
+  import { ref } from "vue";
   export default {
     name: 'HomeView',
+    components: {
+      PostList,
+    },
     // function yang akan di jalankan pertama kali ketika component di buat
     setup() {
-      // seach ini menampung data yang di inputkan pada input, dan names ini menampung data nama yang akan di looping dan di proses untuk di filter
-      const search = ref('');
-      const names = ref([
-        'Jehan',
-        'Rizky',
-        'Fajar',
-        'Dimas',
-        'Rizal','joko','eko','budi','siti','susan', 'siti','henry','james','john','doe','smith'
-      ]);
-
-      // ini hanya berjalan ketika data search berubah
-      const stop = watch(search,()=>{
-        console.log("watch berjalan",search.value);
-      })
-
-      // ini berjalan otomatis ketika component di muat dan akan berjalan setiap data berubah
-      const stopEffect = watchEffect(()=>{
-        console.log("watch effect berjalan",search.value);
-      })
-
-      // filter menggantikan names, dengan menampung nama yang sudah di filter sesuai dengan search
-      const filteredNames = computed(() => {
-        return names.value.filter(name => name.toLowerCase().includes(search.value.toLowerCase()));
-      });
-
-      const Handleclick = () => {
-        stop()
-        stopEffect()
-      }
+      // #1 data dummy untuk post, nanti akan kita ganti dengan data dari firebase
+      const posts = ref([
+        {
+          id: 1,
+          title: "Belajar Vue JS",
+          content: "Vue JS adalah framework JavaScript yang digunakan untuk membangun antarmuka pengguna (user interface) yang interaktif dan responsif. Vue JS memiliki sintaks yang sederhana dan mudah dipahami, sehingga cocok untuk pemula yang ingin belajar tentang pengembangan web.",
+        },
+        {
+          id: 2,
+          title: "Belajar React JS",
+          content: "React JS adalah library JavaScript yang digunakan untuk membangun antarmuka pengguna (user interface) yang interaktif dan responsif. React JS dikembangkan oleh Facebook dan memiliki sintaks yang mirip dengan HTML, sehingga mudah dipahami oleh pengembang web.",
+        },
+      ]);  
 
       return {
-      names, search, filteredNames, Handleclick
+        // #2 mengembalikan data yang akan digunakan di template
+        posts,
       }
     }, 
   }
