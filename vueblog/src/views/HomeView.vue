@@ -3,8 +3,12 @@
   <div class="home">
     <h1>Home</h1>
     <!-- #3 mengirim data posts kedalam props :dataposts -->
-    <PostList :dataposts="posts" />
+    <PostList :dataposts="posts" v-if="showPost" />
   </div>
+  <!-- ini button untuk mentriger mounted dan unmounted dengan mengubah value showpost, saya tambakan tenari option agar lebih bervariatif saja -->
+  <button @click="showPost = !showPost">{{ showPost ? 'Hide Posts' : 'Show Posts' }}</button>
+  <!-- ini button untuk mentriger onUpdate dengan mendelete data menggunakan fungtion pop() -->
+  <button @click="posts.pop()">delete post</button>
 </template>
 
   <script >
@@ -32,9 +36,12 @@
         },
       ]);  
 
+      const showPost = ref(true);
+
       return {
         // #2 mengembalikan data yang akan digunakan di template
         posts,
+        showPost
       }
     }, 
   }

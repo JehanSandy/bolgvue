@@ -13,6 +13,7 @@
 
 <script>
 // #7.1 import component SinglePost untuk di gunakan di template
+import { onMounted, onUnmounted, onUpdated } from 'vue';
 import SinglePost from './singlePost.vue';
 export default {
     name: 'PostList',
@@ -26,10 +27,14 @@ export default {
     },
     // #6 kita bisa mengisi setup dengan argumen yang berisi props, jadi kita bisa mengakses value props dengan cara props.namaProps, contoh props.dataposts
     setup(props) {
-        // cara cek value props tinggal props.namaProps, contoh props.dataposts
-        console.log(props.dataposts);
+
+        // 3 hal di bawah ini adalah lifecycle hooks yang akan di jalankan ketika component di mount, unmount, dan update, jadi ketika component di mount maka akan menampilkan console log "component mounted", ketika component di unmount maka akan menampilkan console log "component unmounted", dan ketika component di update maka akan menampilkan console log "component updated" 
+        onMounted(() => console.log("component mounted"));
+        onUnmounted(() => console.log("component unmounted"));
+        onUpdated(() => console.log("component updated"));
         
     },
+    
 }
 </script>
 

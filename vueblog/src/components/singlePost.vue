@@ -3,12 +3,12 @@
         <!-- #9 menampilkan data title dan content dari props data -->
         <h3>{{ data.title }}</h3>
         <!-- #10 menampilkan snippet content dari props data, ini bisa saja data.content akan tetapi ada fitur tambahan snippet untuk memotong sebagian text agar tidak terlalu panjang -->
-        <p>{{ snippet }}</p>
+        <p>{{ readMore ? snippet : data.content }} <button @click="readMore = !readMore">{{ readMore ? 'read more' : 'read less' }}</button></p>
     </div>
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
     export default {
         name: 'SinglePost',
@@ -22,7 +22,8 @@ import { computed } from 'vue';
                 // substring untuk memotong text, jadi hanya menampilkan 100 karakter pertama diikuti dengan ..., bisa di ubah sesuai kebutuhan
                 return props.data.content.substring(0, 100) + '...';
             });
-            return { snippet };
+            const readMore = ref(true);
+            return { snippet, readMore };
         },
     }
 </script>
