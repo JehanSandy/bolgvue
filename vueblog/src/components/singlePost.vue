@@ -1,7 +1,9 @@
 <template>
     <div>
+        <router-link :to="{ name: 'Show', params: { id: data.id } }">
         <!-- #9 menampilkan data title dan content dari props data -->
         <h3>{{ data.title }}</h3>
+    </router-link>
         <!-- #10 menampilkan snippet content dari props data, ini bisa saja data.content akan tetapi ada fitur tambahan snippet untuk memotong sebagian text agar tidak terlalu panjang -->
         <p>{{ readMore ? snippet : data.content }} <button @click="readMore = !readMore">{{ readMore ? 'read more' : 'read less' }}</button></p>
     </div>
