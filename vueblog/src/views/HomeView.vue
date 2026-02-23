@@ -14,6 +14,8 @@
 </template>
 
   <script >
+  // import  function getPosts dari composable getPosts.js, hasil pemindahan function di setup awal ke composable agar lebih rapi dan reusable
+  import getPosts from '@/composable/getPosts';
   import PostList from '../components/postList.vue'
   // ref dan reactive harus di inport disini
   import { ref } from "vue";
@@ -24,24 +26,11 @@
     },
     // function yang akan di jalankan pertama kali ketika component di buat
     setup() {
-      // #1 data dummy untuk post, nanti akan kita ganti dengan data dari firebase
-      const posts = ref([]); 
-      const error = ref(null); 
-      const showPost = ref(true);
-
-      const load = async () => {
-        try {
-          // data di ubah menjadi fetch dari firebase, pastikan sudah menjalankan firebase menggunakan dummy data db.json
-          let response = await fetch('http://localhost:3000/posts'); 
-          if (!response.ok) {
-          throw new Error('Failed to fetch posts'); 
-        } 
-          const data = await response.json(); 
-          posts.value = data; 
-        } catch (err) {
-          error.value = err.message
-          }
-      }
+      // getpost di tampung di bawah sebagai hasil pengembalian dari function getPosts, jadi kita bisa menggunakan data posts, error, dan load yang sudah di return di function getPosts
+      const { posts, error, load, showPost } = getPosts();
+    
+      
+      // bahkan fungtion showPost juga bisa di pindah dan digunakan di halaman ini
 
       load();
 
