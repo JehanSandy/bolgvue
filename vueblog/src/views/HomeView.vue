@@ -3,6 +3,7 @@
   <div class="home">
     <h1>Home</h1>
     <!-- #3 mengirim data posts kedalam props :dataposts -->
+     <!-- apapun yang diberi nilai false pada v-if akan tidak ditampilkan atau di unmounted (unmounterd jalan) -->
     <PostList :dataposts="posts" v-if="showPost" />
   </div>
   <!-- ini button untuk mentriger mounted dan unmounted dengan mengubah value showpost, saya tambakan tenari option agar lebih bervariatif saja -->
