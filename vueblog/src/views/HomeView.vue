@@ -27,6 +27,7 @@
       // #1 data dummy untuk post, nanti akan kita ganti dengan data dari firebase
       const posts = ref([]); 
       const error = ref(null); 
+      const showPost = ref(true);
 
       const load = async () => {
         try {
@@ -43,7 +44,6 @@
       }
 
       load();
-      const showPost = ref(true);
 
       return {
         // #2 mengembalikan data yang akan digunakan di template
