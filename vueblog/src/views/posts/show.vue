@@ -1,17 +1,19 @@
-<!-- #4 membuat view baru yakni show.vue untuk halaman singgle post -->
+
 <template>
-    <!-- #4.3 jika data tidak muncul maka di munculkan errornya -->
+    
     <div v-if="error">{{ error }}</div>
     <div v-else-if="post">
         <h3>{{ post.title }}</h3>
         <p>{{ post.content }}</p>
     </div>
+    <!-- #1 membuat function loading untuk memahami promise pada async await -->
     <div v-else><loading /></div>
 </template>
 
 <script>
+    // #1.1 membuat component loading
     import loading from '@/components/loading.vue';
-    // #4.1 import function singgle post (getPost)
+    // #1.2 agar function loading bisa jalan dan ada efek circle loading maka akan di tambahkan promise dengan setTimeout 2 detik di function getPost
     import getPost from '@/composable/getPost';
     export default {
         name: 'Show',
@@ -20,7 +22,7 @@
             loading,
         },
         setup(props) {
-            // #4.2 panggul juga fungsinya, jangan lupa menambahkan argugumen props.id untuk menjadi id di url API
+        
             const { post, error, load } = getPost(props.id);    
 
             load();

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-// #1 membuat singgle show artikel
+
 import showPost from '../views/posts/show.vue'
 
 const router = createRouter({
@@ -12,7 +12,7 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
     },
-    // #2menambahkan routernya untuk halaman singgle show, menggunakan parameter id untuk mengambil data post yang di klik dan props true untuk mengirimkan parameter id ke component showPost.vue
+
     {
       path: '/show_posts/:id',
       name: 'Show',
