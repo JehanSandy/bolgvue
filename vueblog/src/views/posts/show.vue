@@ -6,14 +6,19 @@
         <h3>{{ post.title }}</h3>
         <p>{{ post.content }}</p>
     </div>
+    <div v-else><loading /></div>
 </template>
 
 <script>
+    import loading from '@/components/loading.vue';
     // #4.1 import function singgle post (getPost)
     import getPost from '@/composable/getPost';
     export default {
         name: 'Show',
         props:['id'],
+        components: {
+            loading,
+        },
         setup(props) {
             // #4.2 panggul juga fungsinya, jangan lupa menambahkan argugumen props.id untuk menjadi id di url API
             const { post, error, load } = getPost(props.id);    
