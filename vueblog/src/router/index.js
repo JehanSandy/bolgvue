@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 
 
 import showPost from '../views/posts/show.vue'
+import CreatePost from '../views/posts/CreatePost.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,11 @@ const router = createRouter({
       name: 'Show',
       component: showPost,
       props: true
+    },
+    {
+      path: '/post/create',
+      name: 'CreatePost',
+      component: CreatePost
     }
     // {
     //   path: '/about',
