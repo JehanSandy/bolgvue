@@ -1,6 +1,7 @@
 <template>
     <div>
-        <form action="">
+        <!-- membuat function create data -->
+        <form @submit.prevent="handleSubmit">
             <div>
                 <label for="title">Title</label>
                 <input type="text" id="title" name="title" v-model="title">
@@ -22,25 +23,16 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import createPost from '@/composable/createPost';
+
+
     export default {
         name: 'CreatePost',
         setup() {
-            const title = ref('');
-            const content = ref('');
-            const tag = ref('');
-            const tags = ref([]);
-
-            const handlekeydown = () => {
-                if (!tags.value.includes(tag.value)) {
-                  tag.value  = tag.value.replace(/\s/g, '')
-                  tags.value.push(tag.value);
-                }
-                tag.value = '';
-            }
+            const {title, content, tag, tags, handlekeydown, handleSubmit} = createPost();
 
             return {
-                title, content, tag, tags, handlekeydown
+                title, content, tag, tags, handlekeydown, handleSubmit
             }
         }
     }

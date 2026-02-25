@@ -5,8 +5,8 @@
     <div v-else-if="post">
         <h3>{{ post.title }}</h3>
         <p>{{ post.content }}</p>
+        <div v-for="tag in post.tags" :key="tag"> #{{ tag }}</div>
     </div>
-    <!-- #1 membuat function loading untuk memahami promise pada async await -->
     <div v-else><loading /></div>
 </template>
 

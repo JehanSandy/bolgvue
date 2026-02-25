@@ -1,12 +1,11 @@
 <template>
     <div>
         <router-link :to="{ name: 'Show', params: { id: data.id } }">
-            
         <h3>{{ data.title }}</h3>
-    </router-link>
-
+        </router-link>
         <p>{{ readMore ? snippet : data.content }} <button @click="readMore = !readMore">{{ readMore ? 'read more' : 'read less' }}</button></p>
     </div>
+    <div v-for="tag in data.tags" :key="tag"> #{{ tag }}</div>
 </template>
 
 <script>
